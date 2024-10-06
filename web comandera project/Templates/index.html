@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandera de Restaurante</title>
+</head>
+<body>
+    <h1>Registrar Pedido</h1>
+    <form action="{{ url_for('agregar_pedido') }}" method="POST">
+        <label>Producto:</label>
+        <input type="text" name="producto" required><br>
+        <label>Cantidad:</label>
+        <input type="number" name="cantidad" required><br>
+        <label>Precio Unitario:</label>
+        <input type="number" step="0.01" name="precio" required><br>
+        <button type="submit">Guardar Pedido</button>
+    </form>
+
+    <p><a href="{{ url_for('reporte') }}">Ver Reporte Diario</a></p>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
